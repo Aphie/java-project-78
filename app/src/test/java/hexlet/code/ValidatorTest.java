@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 class StringSchemaTest {
     private Validator v = new Validator();
     private StringSchema schema = v.string();
-    private final int TO_CHECK_MIN_LENGTH_FIRST = 4;
-    private final int VARIABLE_TO_CHECK_MIN_SECOND = 5;
+    public static final int TO_CHECK_MIN_LENGTH_FIRST = 4;
+    public static final int TO_CHECK_MIN_LENGTH_SECOND = 5;
 
     @Test
     void basicNullAndEmptyValidTest() {
@@ -35,7 +35,7 @@ class StringSchemaTest {
 
     @Test
     void basicLengthTest() {
-        Assertions.assertEquals(false, schema.minLength(VARIABLE_TO_CHECK_MIN_SECOND).isValid("test"));
+        Assertions.assertEquals(false, schema.minLength(TO_CHECK_MIN_LENGTH_SECOND).isValid("test"));
         Assertions.assertEquals(true, schema.minLength(TO_CHECK_MIN_LENGTH_FIRST).isValid("test"));
         Assertions.assertEquals(true, schema.isValid("what"));
         Assertions.assertEquals(false, schema.isValid("toe"));
