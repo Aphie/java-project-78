@@ -1,5 +1,8 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'checkstyle'
+    id 'jacoco'
 }
 
 group 'hexlet.code'
@@ -24,9 +27,34 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 compileJava {
     options.release = 17
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
+}
+
+application {
+    mainClass = 'hexlet.code.App'
+}
+
+checkstyle {
+    configFile = file("${rootDir}/config/checkstyle.xml")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = file("$buildDir/jacoco")
+    applyTo run
+}
+
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.required = true
+    }
 }
