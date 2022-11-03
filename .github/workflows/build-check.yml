@@ -21,13 +21,13 @@ jobs:
       - name: build project
         run: make project-build
 
-#      - name: test & publish code coverage
-#        uses: paambaati/codeclimate-action@v3.0.0
-#        env:
-#          # Set CC_TEST_REPORTER_ID as secret of your repo
-#          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-#          JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
-#        with:
-#          # The report file must be there, otherwise Code Climate won't find it
-#          coverageCommand: make run-test
-#          coverageLocations: ${{github.workspace}}/app/build/jacoco/test/jacocoTestReport.xml:jacoco
+      - name: test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          # Set CC_TEST_REPORTER_ID as secret of your repo
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
+        with:
+          # The report file must be there, otherwise Code Climate won't find it
+          coverageCommand: make run-test
+          coverageLocations: ${{github.workspace}}/app/build/jacoco/test/jacocoTestReport.xml:jacoco

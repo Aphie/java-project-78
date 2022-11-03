@@ -1,17 +1,17 @@
 # Makefile
 run-dist: # запуск исполняемого файла
-	./build/install/app/bin/app
+	./build/install/app/bin
 
 project-build: #сборка проекта
-	./gradlew clean build
+	gradle clean build
 
 lint-main: #проверка на стандарт кодирования Main
-	./gradlew checkstyleMain
+	gradle checkstyleMain
 
 lint-test: #проверка на стандарт кодирования Test
-	./gradlew checkstyleTest
+	gradle checkstyleTest
 
 run-test: #запуск тестов
-	./gradlew test
+	gradle test
 
 .PHONY: build

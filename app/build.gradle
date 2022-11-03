@@ -10,8 +10,16 @@ repositories {
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0-M1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.0-M1'
+    testImplementation 'org.assertj:assertj-core:3.19.0'
 }
 
 test {
@@ -19,7 +27,6 @@ test {
 }
 
 compileJava {
-
     options.release = 17
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
