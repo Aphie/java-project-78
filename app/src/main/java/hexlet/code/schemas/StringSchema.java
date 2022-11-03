@@ -7,34 +7,34 @@ import java.util.List;
 
 @Data
 public class StringSchema {
-    public String dataToCheck;
-    public List<String> checkList = new ArrayList<>();
-    public String symbolsToCompare;
-    public int lengthToCompare;
-    public boolean schemaIsValid;
+    private String dataToCheck;
+    private List<String> checkList = new ArrayList<>();
+    private String symbolsToCompare;
+    private int lengthToCompare;
+    private boolean schemaIsValid;
 
     public StringSchema() {
         this.schemaIsValid = true;
     }
 
-    public StringSchema required() {
+    public final StringSchema required() {
         this.checkList.add("isRequired");
         return this;
     }
 
-    public StringSchema contains(String toCompare) {
+    public final StringSchema contains(String toCompare) {
         this.checkList.add("isContains");
         this.symbolsToCompare = toCompare;
         return this;
     }
 
-    public StringSchema minLength(int toCompare) {
+    public final StringSchema minLength(int toCompare) {
         this.checkList.add("isEqualMinLength");
         this.lengthToCompare = toCompare;
         return this;
     }
 
-    public StringSchema toCheckIfRequired() {
+    public final StringSchema toCheckIfRequired() {
         if ((this.dataToCheck == null) || this.dataToCheck.equals("")) {
             this.schemaIsValid = false;
         } else {
@@ -43,7 +43,7 @@ public class StringSchema {
         return this;
     }
 
-    public StringSchema toCheckIfContains(String toCompare) {
+    public final StringSchema toCheckIfContains(String toCompare) {
         if (!this.dataToCheck.contains(toCompare)) {
             this.schemaIsValid = false;
         } else {
@@ -52,8 +52,8 @@ public class StringSchema {
         return this;
     }
 
-    public StringSchema toCheckIfEqualLength(int toCompare) {
-        if (this.dataToCheck.length()<toCompare) {
+    public final StringSchema toCheckIfEqualLength(int toCompare) {
+        if (this.dataToCheck.length() < toCompare) {
             this.schemaIsValid = false;
         } else {
             this.schemaIsValid = true;
@@ -61,7 +61,7 @@ public class StringSchema {
         return this;
     }
 
-    public boolean isValid(String input) {
+    public final boolean isValid(String input) {
         this.dataToCheck = input;
         for (String check: this.checkList) {
             if (check.equals("isRequired")) {

@@ -9,7 +9,7 @@ public class App {
         StringSchema schema = v.string();
 
         schema.isValid(""); // true
-        schema.isValid(null);// true
+        schema.isValid(null); // true
 
         schema.required();
 
@@ -24,7 +24,5 @@ public class App {
 
         schema.isValid("what does the fox say"); // false
 // уже false, так как добавлена ещё одна проверка contains("whatthe")
-
-        schema.contains("what").minLength(40).isValid("what does the fox say");
     }
 }
