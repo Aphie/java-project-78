@@ -114,7 +114,6 @@ class MapSchemaTest {
     void basicSizeOfTest() {
         data.put("key1", "value1");
         Assertions.assertEquals(false, schema.sizeof(2).isValid(data));
-
         data.put("key2", "value2");
         Assertions.assertEquals(true, schema.isValid(data));
     }
