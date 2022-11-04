@@ -1,12 +1,15 @@
 package hexlet.code.schemas;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 class BaseSchema {
-    public Object dataToCheck;
-    public List<String> checkList = new ArrayList<>();
-    public boolean schemaIsValid;
+    private Object dataToCheck;
+    private List<String> checkList = new ArrayList<>();
+    private boolean schemaIsValid;
 
     protected BaseSchema toCheckIfRequired() {
         return this;
