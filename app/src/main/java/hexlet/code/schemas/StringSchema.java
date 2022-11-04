@@ -1,17 +1,8 @@
 package hexlet.code.schemas;
 
-import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@Data
-public class StringSchema {
-    private String dataToCheck;
-    private List<String> checkList = new ArrayList<>();
+public class StringSchema extends BaseSchema{
     private String symbolsToCompare;
     private int lengthToCompare;
-    private boolean schemaIsValid;
 
     public StringSchema() {
         this.schemaIsValid = true;
@@ -34,44 +25,30 @@ public class StringSchema {
         return this;
     }
 
+    @Override
     public final StringSchema toCheckIfRequired() {
-        if ((this.dataToCheck == null) || this.dataToCheck.equals("")) {
-            this.schemaIsValid = false;
-        } else {
-            this.schemaIsValid = true;
-        }
+        this.schemaIsValid = ((this.dataToCheck == null) || this.dataToCheck.equals("")) ? false : true;
         return this;
     }
 
     public final StringSchema toCheckIfContains(String toCompare) {
-        if (!this.dataToCheck.contains(toCompare)) {
-            this.schemaIsValid = false;
-        } else {
-            this.schemaIsValid = true;
-        }
+        this.schemaIsValid = ((String)this.dataToCheck).contains(toCompare);
         return this;
     }
 
     public final StringSchema toCheckIfEqualLength(int toCompare) {
-        if (this.dataToCheck.length() < toCompare) {
-            this.schemaIsValid = false;
-        } else {
-            this.schemaIsValid = true;
-        }
+        this.schemaIsValid = ((String)this.dataToCheck).length() >= toCompare;
         return this;
     }
 
-    public final boolean isValid(String input) {
-        this.dataToCheck = input;
+    @Override
+    public final boolean isValid(Object input) {
+        super.isValid(input);
         for (String check: this.checkList) {
-            if (check.equals("isRequired")) {
-                this.toCheckIfRequired();
-            } else if (check.equals("isContains")) {
+            if (check.equals("isContains")) {
                 this.toCheckIfContains(this.symbolsToCompare);
             } else if (check.equals("isEqualMinLength")) {
                 this.toCheckIfEqualLength(this.lengthToCompare);
-            } else {
-                this.schemaIsValid = true;
             }
         }
         return this.schemaIsValid;

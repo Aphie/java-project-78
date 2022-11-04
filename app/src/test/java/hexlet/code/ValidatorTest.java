@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,4 +43,39 @@ class StringSchemaTest {
 
     }
 
+}
+
+class NumberSchemaTest {
+    private Validator v = new Validator();
+    private NumberSchema schema = v.number();
+
+    @Test
+    void basicNullAndEmptyValidTest() {
+        Assertions.assertEquals(true, schema.isValid(null));
+        Assertions.assertEquals(true, schema.isValid("test"));
+        Assertions.assertEquals(true, schema.isValid(5));
+        Assertions.assertEquals(true, schema.isValid(0));
+    }
+
+    @Test
+    void basicRequiredTest() {
+        Assertions.assertEquals(false, schema.required().isValid(null));
+        Assertions.assertEquals(true, schema.required().isValid(10));
+        Assertions.assertEquals(false, schema.isValid("test"));
+        Assertions.assertEquals(true, schema.isValid(0));
+    }
+
+    @Test
+    void basicPositiveTest() {
+        Assertions.assertEquals(true, schema.positive().isValid(10));
+        Assertions.assertEquals(false, schema.isValid(-10));
+    }
+
+    @Test
+    void basicRangeTest() {
+        Assertions.assertEquals(true, schema.range(5, 10).isValid(5));
+        Assertions.assertEquals(true, schema.isValid(10));
+        Assertions.assertEquals(false, schema.isValid(4));
+        Assertions.assertEquals(false, schema.isValid(11));
+    }
 }
