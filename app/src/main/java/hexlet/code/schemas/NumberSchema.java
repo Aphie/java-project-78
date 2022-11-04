@@ -18,10 +18,10 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public final NumberSchema range(int valueFrom, int valueTo) {
+    public final NumberSchema range(int checkValueFrom, int checkValueTo) {
         this.checkList.add("isRange");
-        this.valueFrom = valueFrom;
-        this.valueTo = valueTo;
+        this.valueFrom = checkValueFrom;
+        this.valueTo = checkValueTo;
         return this;
     }
 
@@ -36,8 +36,9 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public final NumberSchema toCheckIfRange(int valueFrom, int valueTo) {
-        this.schemaIsValid = ((Integer) this.dataToCheck >= valueFrom) && ((Integer) this.dataToCheck <= valueTo);
+    public final NumberSchema toCheckIfRange(int checkValueFrom, int checkValueTo) {
+        this.schemaIsValid = ((Integer) this.dataToCheck >= checkValueFrom)
+                && ((Integer) this.dataToCheck <= checkValueTo);
         return this;
     }
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class BaseSchema {
-    Object dataToCheck;
-    List<String> checkList = new ArrayList<>();
-    boolean schemaIsValid;
+    protected Object dataToCheck;
+    protected List<String> checkList = new ArrayList<>();
+    protected boolean schemaIsValid;
 
     protected BaseSchema toCheckIfRequired() {
         return this;
