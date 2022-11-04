@@ -95,7 +95,7 @@ class NumberSchemaTest {
 class MapSchemaTest {
     private Validator v = new Validator();
     private MapSchema schema = v.map();
-    Map<String, String> data = new HashMap<>();
+    private Map<String, String> data = new HashMap<>();
 
     @Test
     void basicNullAndEmptyValidTest() {

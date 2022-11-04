@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 import java.util.List;
 import java.util.Map;
 
-public class MapSchema extends BaseSchema{
+public class MapSchema extends BaseSchema {
     private int sizeValue;
 
     public MapSchema() {
@@ -15,9 +15,9 @@ public class MapSchema extends BaseSchema{
         return this;
     }
 
-    public final MapSchema sizeof(int sizeValue) {
+    public final MapSchema sizeof(int checkSizeValue) {
         super.setCheckList(List.of("isSizeOf"));
-        this.sizeValue = sizeValue;
+        this.sizeValue = checkSizeValue;
         return this;
     }
 
@@ -27,8 +27,8 @@ public class MapSchema extends BaseSchema{
         return this;
     }
 
-    public final MapSchema toCheckIfSizeOf(int sizeValue) {
-        super.setSchemaIsValid(((Map) super.getDataToCheck()).keySet().size() == sizeValue);
+    public final MapSchema toCheckIfSizeOf(int checkSizeValue) {
+        super.setSchemaIsValid(((Map) super.getDataToCheck()).keySet().size() == checkSizeValue);
         return this;
     }
 
