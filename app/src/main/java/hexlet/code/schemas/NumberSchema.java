@@ -1,8 +1,8 @@
 package hexlet.code.schemas;
 
 public class NumberSchema extends BaseSchema {
-    private int fromValue;
-    private int toValue;
+    private int valueFrom;
+    private int valueTo;
 
     public NumberSchema() {
         this.schemaIsValid = true;
@@ -18,10 +18,10 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public final NumberSchema range(int fromValue, int toValue) {
+    public final NumberSchema range(int valueFrom, int valueTo) {
         this.checkList.add("isRange");
-        this.fromValue = fromValue;
-        this.toValue = toValue;
+        this.valueFrom = valueFrom;
+        this.valueTo = valueTo;
         return this;
     }
 
@@ -32,12 +32,12 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema toCheckIfPositive() {
-        this.schemaIsValid = ((Integer)this.dataToCheck > 0);
+        this.schemaIsValid = ((Integer) this.dataToCheck > 0);
         return this;
     }
 
-    public final NumberSchema toCheckIfRange(int fromValue, int toValue) {
-        this.schemaIsValid = ((Integer)this.dataToCheck >= fromValue) && ((Integer)this.dataToCheck <= toValue);
+    public final NumberSchema toCheckIfRange(int valueFrom, int valueTo) {
+        this.schemaIsValid = ((Integer) this.dataToCheck >= valueFrom) && ((Integer) this.dataToCheck <= valueTo);
         return this;
     }
 
@@ -48,7 +48,7 @@ public class NumberSchema extends BaseSchema {
             if (check.equals("isPositive")) {
                 this.toCheckIfPositive();
             } else if (check.equals("isRange")) {
-                this.toCheckIfRange(this.fromValue, this.toValue);
+                this.toCheckIfRange(this.valueFrom, this.valueTo);
             }
         }
         return this.schemaIsValid;

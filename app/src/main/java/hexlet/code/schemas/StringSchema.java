@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema{
+public class StringSchema extends BaseSchema {
     private String symbolsToCompare;
     private int lengthToCompare;
 
@@ -32,12 +32,12 @@ public class StringSchema extends BaseSchema{
     }
 
     public final StringSchema toCheckIfContains(String toCompare) {
-        this.schemaIsValid = ((String)this.dataToCheck).contains(toCompare);
+        this.schemaIsValid = ((String) this.dataToCheck).contains(toCompare);
         return this;
     }
 
     public final StringSchema toCheckIfEqualLength(int toCompare) {
-        this.schemaIsValid = ((String)this.dataToCheck).length() >= toCompare;
+        this.schemaIsValid = ((String) this.dataToCheck).length() >= toCompare;
         return this;
     }
 

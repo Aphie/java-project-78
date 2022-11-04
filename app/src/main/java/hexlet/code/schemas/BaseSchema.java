@@ -3,16 +3,16 @@ package hexlet.code.schemas;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseSchema {
-    protected Object dataToCheck;
-    protected List<String> checkList = new ArrayList<>();
-    protected boolean schemaIsValid;
+class BaseSchema {
+    Object dataToCheck;
+    List<String> checkList = new ArrayList<>();
+    boolean schemaIsValid;
 
-    public BaseSchema toCheckIfRequired() {
+    protected BaseSchema toCheckIfRequired() {
         return this;
     }
 
-    public boolean isValid(Object input) {
+    protected boolean isValid(Object input) {
         this.dataToCheck = input;
         for (String check: this.checkList) {
             if (check.equals("isRequired")) {

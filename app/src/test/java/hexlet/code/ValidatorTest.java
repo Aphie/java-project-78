@@ -49,33 +49,41 @@ class NumberSchemaTest {
     private Validator v = new Validator();
     private NumberSchema schema = v.number();
 
+    public static final int TO_CHECK_REALISATION_ZERO = 0;
+    public static final int TO_CHECK_REALISATION_FOUR = 4;
+    public static final int TO_CHECK_REALISATION_FIVE = 5;
+    public static final int TO_CHECK_REALISATION_TEN = 10;
+    public static final int TO_CHECK_REALISATION_MINUS_TEN = -10;
+    public static final int TO_CHECK_REALISATION_ELEVEN = 11;
+
     @Test
     void basicNullAndEmptyValidTest() {
         Assertions.assertEquals(true, schema.isValid(null));
         Assertions.assertEquals(true, schema.isValid("test"));
-        Assertions.assertEquals(true, schema.isValid(5));
-        Assertions.assertEquals(true, schema.isValid(0));
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_FIVE));
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_ZERO));
     }
 
     @Test
     void basicRequiredTest() {
         Assertions.assertEquals(false, schema.required().isValid(null));
-        Assertions.assertEquals(true, schema.required().isValid(10));
+        Assertions.assertEquals(true, schema.required().isValid(TO_CHECK_REALISATION_TEN));
         Assertions.assertEquals(false, schema.isValid("test"));
-        Assertions.assertEquals(true, schema.isValid(0));
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_ZERO));
     }
 
     @Test
     void basicPositiveTest() {
-        Assertions.assertEquals(true, schema.positive().isValid(10));
-        Assertions.assertEquals(false, schema.isValid(-10));
+        Assertions.assertEquals(true, schema.positive().isValid(TO_CHECK_REALISATION_TEN));
+        Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_MINUS_TEN));
     }
 
     @Test
     void basicRangeTest() {
-        Assertions.assertEquals(true, schema.range(5, 10).isValid(5));
-        Assertions.assertEquals(true, schema.isValid(10));
-        Assertions.assertEquals(false, schema.isValid(4));
-        Assertions.assertEquals(false, schema.isValid(11));
+        Assertions.assertEquals(true, schema.range(TO_CHECK_REALISATION_FIVE, TO_CHECK_REALISATION_TEN)
+                .isValid(TO_CHECK_REALISATION_FIVE));
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_TEN));
+        Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_FOUR));
+        Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_ELEVEN));
     }
 }
