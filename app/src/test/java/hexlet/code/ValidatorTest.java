@@ -1,9 +1,13 @@
 package hexlet.code;
 
+import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 class StringSchemaTest {
     private Validator v = new Validator();
@@ -86,4 +90,33 @@ class NumberSchemaTest {
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_FOUR));
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_ELEVEN));
     }
+}
+
+class MapSchemaTest {
+    private Validator v = new Validator();
+    private MapSchema schema = v.map();
+    Map<String, String> data = new HashMap<>();
+
+    @Test
+    void basicNullAndEmptyValidTest() {
+        Assertions.assertEquals(true, schema.isValid(null));
+    }
+
+    @Test
+    void basicRequiredTest() {
+        data.put("key1", "value1");
+        Assertions.assertEquals(false, schema.required().isValid(null));
+        Assertions.assertEquals(true, schema.required().isValid(new HashMap()));
+        Assertions.assertEquals(true, schema.isValid(data));
+    }
+
+    @Test
+    void basicSizeOfTest() {
+        data.put("key1", "value1");
+        Assertions.assertEquals(false, schema.sizeof(2).isValid(data));
+
+        data.put("key2", "value2");
+        Assertions.assertEquals(true, schema.isValid(data));
+    }
+
 }
