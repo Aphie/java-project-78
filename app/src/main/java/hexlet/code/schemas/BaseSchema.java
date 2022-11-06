@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-class BaseSchema {
+public class BaseSchema {
     private Object dataToCheck;
     private List<String> checkList = new ArrayList<>();
     private boolean schemaIsValid;
