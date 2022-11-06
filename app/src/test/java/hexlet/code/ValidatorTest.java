@@ -91,6 +91,12 @@ class NumberSchemaTest {
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_FOUR));
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_ELEVEN));
     }
+
+    @Test
+    void notBasicRangeTest() {
+        Assertions.assertEquals(true, schema.range(TO_CHECK_REALISATION_FIVE, TO_CHECK_REALISATION_TEN)
+                .isValid("t"));
+    }
 }
 
 class MapSchemaTest {

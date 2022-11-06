@@ -41,8 +41,10 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema toCheckIfRange(int checkValueFrom, int checkValueTo) {
-        super.setSchemaIsValid(((Integer) super.getDataToCheck() >= checkValueFrom)
-                && ((Integer) super.getDataToCheck() <= checkValueTo));
+        if (super.getDataToCheck() instanceof Integer) {
+            super.setSchemaIsValid(((Integer) super.getDataToCheck() >= checkValueFrom)
+                    && ((Integer) super.getDataToCheck() <= checkValueTo));
+        }
         return this;
     }
 
