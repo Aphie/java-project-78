@@ -28,7 +28,6 @@ public class MapSchema extends BaseSchema {
         return this;
 
     }
-
     @Override
     public final MapSchema toCheckIfRequired() {
         super.setSchemaIsValid(super.getDataToCheck() instanceof Map);
