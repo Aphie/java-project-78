@@ -11,11 +11,11 @@ public class BaseSchema {
     private List<String> checkList = new ArrayList<>();
     private boolean schemaIsValid;
 
-    protected BaseSchema toCheckIfRequired() {
+    public BaseSchema toCheckIfRequired() {
         return this;
     }
 
-    protected boolean isValid(Object input) {
+    public boolean isValid(Object input) {
         this.dataToCheck = input;
         for (String check: this.checkList) {
             if (check.equals("isRequired")) {

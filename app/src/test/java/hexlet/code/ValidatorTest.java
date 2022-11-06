@@ -144,7 +144,7 @@ class MapSchemaTest {
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
         human4.put("age", TO_CHECK_REALISATION_MINUS_TEN);
-;
+
         Assertions.assertEquals(true, schema.isValid(human1));
         Assertions.assertEquals(true, schema.isValid(human2));
         Assertions.assertEquals(false, schema.isValid(human3));

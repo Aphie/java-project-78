@@ -1,7 +1,5 @@
 package hexlet.code.schemas;
 
-import hexlet.code.Validator;
-
 import java.util.List;
 import java.util.Map;
 
