@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
@@ -97,6 +98,9 @@ class MapSchemaTest {
     private MapSchema schema = v.map();
     private Map<String, String> data = new HashMap<>();
 
+    public static final int TO_CHECK_REALISATION_MINUS_TEN = -10;
+    public static final int TO_CHECK_REALISATION_ELEVEN = 11;
+
     @Test
     void basicNullAndEmptyValidTest() {
         Assertions.assertEquals(true, schema.isValid(null));
@@ -116,6 +120,35 @@ class MapSchemaTest {
         Assertions.assertEquals(false, schema.sizeof(2).isValid(data));
         data.put("key2", "value2");
         Assertions.assertEquals(true, schema.isValid(data));
+    }
+
+    @Test
+    void basicShapeTest() {
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", TO_CHECK_REALISATION_ELEVEN);
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+
+        Map<String, Object> human4 = new HashMap<>();
+        human4.put("name", "Valya");
+        human4.put("age", TO_CHECK_REALISATION_MINUS_TEN);
+;
+        Assertions.assertEquals(true, schema.isValid(human1));
+        Assertions.assertEquals(true, schema.isValid(human2));
+        Assertions.assertEquals(false, schema.isValid(human3));
+        Assertions.assertEquals(false, schema.isValid(human4));
     }
 
 }

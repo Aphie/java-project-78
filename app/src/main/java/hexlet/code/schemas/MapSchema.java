@@ -1,10 +1,13 @@
 package hexlet.code.schemas;
 
+import hexlet.code.Validator;
+
 import java.util.List;
 import java.util.Map;
 
 public class MapSchema extends BaseSchema {
     private int sizeValue;
+    private Map<String, BaseSchema> shapeSchema;
 
     public MapSchema() {
         super.setSchemaIsValid(true);
@@ -21,6 +24,13 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
+    public final MapSchema shape(Map<String, BaseSchema> schemas) {
+        super.setCheckList(List.of("isShape"));
+        this.shapeSchema = schemas;
+        return this;
+
+    }
+
     @Override
     public final MapSchema toCheckIfRequired() {
         super.setSchemaIsValid(super.getDataToCheck() instanceof Map);
@@ -32,12 +42,30 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
+    public final MapSchema toCheckInnerValues() {
+        int itemValidFlag = 0;
+        for (Object key: ((Map) super.getDataToCheck()).keySet()) {
+            for (String keyToCheck : this.shapeSchema.keySet()) {
+                if (key.equals(keyToCheck)) {
+                    BaseSchema baseSchema = this.shapeSchema.get(keyToCheck);
+                    if (!baseSchema.isValid(((Map<?, ?>) super.getDataToCheck()).get(key))) {
+                        itemValidFlag++;
+                    }
+                }
+            }
+        }
+        super.setSchemaIsValid(itemValidFlag == 0);
+        return this;
+    }
+
     @Override
     public final boolean isValid(Object input) {
         super.isValid(input);
         for (String check: super.getCheckList()) {
             if (check.equals("isSizeOf")) {
                 this.toCheckIfSizeOf(this.sizeValue);
+            } else if (check.equals("isShape")) {
+                this.toCheckInnerValues();
             }
         }
         return super.isSchemaIsValid();
