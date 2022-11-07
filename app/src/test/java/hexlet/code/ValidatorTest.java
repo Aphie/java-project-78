@@ -79,6 +79,15 @@ class NumberSchemaTest {
     }
 
     @Test
+    void notBasicRequiredTest() {
+        Assertions.assertEquals(true, schema.isValid(5));
+        Assertions.assertEquals(true, schema.isValid(null));
+        Assertions.assertEquals(true, schema.positive().isValid(null));
+        schema.required();
+        Assertions.assertEquals(false, schema.isValid(null));
+    }
+
+    @Test
     void basicPositiveTest() {
         Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_ZERO));
         Assertions.assertEquals(true, schema.positive().isValid(TO_CHECK_REALISATION_TEN));
