@@ -34,14 +34,14 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema toCheckIfPositive() {
-        super.setSchemaIsValid(super.getDataToCheck() == null
-                || (super.getDataToCheck() instanceof Integer && (Integer) super.getDataToCheck() >= 0));
+        super.setSchemaIsValid(super.getDataToCheck() instanceof Integer && (Integer) super.getDataToCheck() >= 0);
         return this;
     }
 
     public final NumberSchema toCheckIfRange(int checkValueFrom, int checkValueTo) {
-        super.setSchemaIsValid(((Integer) super.getDataToCheck() >= checkValueFrom)
-                    && ((Integer) super.getDataToCheck() <= checkValueTo));
+        super.setSchemaIsValid((super.getDataToCheck() instanceof Integer)
+                && (((Integer) super.getDataToCheck() >= checkValueFrom)
+                    && ((Integer) super.getDataToCheck() <= checkValueTo)));
         return this;
     }
 
