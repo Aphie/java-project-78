@@ -79,8 +79,9 @@ class NumberSchemaTest {
 
     @Test
     void basicPositiveTest() {
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_ZERO));
         Assertions.assertEquals(true, schema.positive().isValid(TO_CHECK_REALISATION_TEN));
-        Assertions.assertEquals(true, schema.positive().isValid(TO_CHECK_REALISATION_TEN));
+        Assertions.assertEquals(false, schema.positive().isValid(TO_CHECK_REALISATION_MINUS_TEN));
         Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_ZERO));
     }
 
