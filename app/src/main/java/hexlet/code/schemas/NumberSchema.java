@@ -27,7 +27,7 @@ public class NumberSchema extends BaseSchema {
 
     @Override
     public final NumberSchema toCheckIfRequired() {
-        super.setSchemaIsValid((super.getDataToCheck() instanceof Integer));
+        super.setSchemaIsValid((super.getDataToCheck() instanceof Integer && !(super.getDataToCheck() == null)));
         return this;
     }
 

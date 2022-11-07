@@ -25,7 +25,6 @@ public class BaseSchema {
         } else {
             this.checkList.add(value);
         }
-
     }
 
     public boolean isValid(Object input) {
