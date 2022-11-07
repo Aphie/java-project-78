@@ -12,18 +12,18 @@ public class MapSchema extends BaseSchema {
     }
 
     public final MapSchema required() {
-        super.setCheckList(List.of("isRequired"));
+        super.setCheckList("isRequired");
         return this;
     }
 
     public final MapSchema sizeof(int checkSizeValue) {
-        super.setCheckList(List.of("isSizeOf"));
+        super.setCheckList("isSizeOf");
         this.sizeValue = checkSizeValue;
         return this;
     }
 
     public final MapSchema shape(Map<String, BaseSchema> schemas) {
-        super.setCheckList(List.of("isShape"));
+        super.setCheckList("isShape");
         this.shapeSchema = schemas;
         return this;
 

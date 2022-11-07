@@ -11,17 +11,17 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema required() {
-        super.setCheckList(List.of("isRequired"));
+        super.setCheckList("isRequired");
         return this;
     }
 
     public final NumberSchema positive() {
-        super.setCheckList(List.of("isPositive"));
+        super.setCheckList("isPositive");
         return this;
     }
 
     public final NumberSchema range(int checkValueFrom, int checkValueTo) {
-        super.setCheckList(List.of("isRange"));
+        super.setCheckList("isRange");
         this.valueFrom = checkValueFrom;
         this.valueTo = checkValueTo;
         return this;
@@ -35,7 +35,7 @@ public class NumberSchema extends BaseSchema {
 
     public final NumberSchema toCheckIfPositive() {
         super.setSchemaIsValid(super.getDataToCheck() == null
-                || (super.getDataToCheck() instanceof Integer && (Integer) super.getDataToCheck() >= 0));
+                || (super.getDataToCheck() instanceof Integer && (Integer) super.getDataToCheck() > 0));
         return this;
     }
 

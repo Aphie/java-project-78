@@ -15,6 +15,10 @@ public class BaseSchema {
         return this;
     }
 
+    public void setCheckList (String value) {
+        this.checkList.add(value);
+    }
+
     public boolean isValid(Object input) {
         this.dataToCheck = input;
         for (String check: this.checkList) {

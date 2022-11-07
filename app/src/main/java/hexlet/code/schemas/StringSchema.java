@@ -11,18 +11,18 @@ public class StringSchema extends BaseSchema {
     }
 
     public final StringSchema required() {
-        super.setCheckList(List.of("isRequired"));
+        super.setCheckList("isRequired");
         return this;
     }
 
     public final StringSchema contains(String toCompare) {
-        super.setCheckList(List.of("isContains"));
+        super.setCheckList("isContains");
         this.symbolsToCompare = toCompare;
         return this;
     }
 
     public final StringSchema minLength(int toCompare) {
-        super.setCheckList(List.of("isEqualMinLength"));
+        super.setCheckList("isEqualMinLength");
         this.lengthToCompare = toCompare;
         return this;
     }
