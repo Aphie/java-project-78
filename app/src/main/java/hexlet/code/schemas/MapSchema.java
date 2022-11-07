@@ -30,7 +30,7 @@ public class MapSchema extends BaseSchema {
 
     @Override
     public final MapSchema toCheckIfRequired() {
-        super.setSchemaIsValid(super.getDataToCheck() instanceof Map);
+        super.setSchemaIsValid(super.getDataToCheck() instanceof Map && !(super.getDataToCheck() == null));
         return this;
     }
 
