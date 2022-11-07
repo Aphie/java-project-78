@@ -15,7 +15,7 @@ public class BaseSchema {
         return this;
     }
 
-    public void setCheckList (String value) {
+    public void setCheckList(String value) {
         this.checkList.add(value);
     }
 

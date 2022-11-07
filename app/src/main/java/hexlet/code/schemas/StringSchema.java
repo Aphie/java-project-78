@@ -1,7 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.List;
-
 public class StringSchema extends BaseSchema {
     private String symbolsToCompare;
     private int lengthToCompare;
