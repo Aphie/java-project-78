@@ -34,9 +34,7 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema toCheckIfPositive() {
-        if (super.getDataToCheck() != null) {
-            super.setSchemaIsValid((Integer) super.getDataToCheck() >= 0);
-        }
+        super.setSchemaIsValid(super.getDataToCheck() == null || (Integer) super.getDataToCheck() >= 0);
         return this;
     }
 
