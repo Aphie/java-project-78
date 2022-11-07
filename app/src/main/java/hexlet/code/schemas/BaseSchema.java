@@ -16,7 +16,16 @@ public class BaseSchema {
     }
 
     public void setCheckList(String value) {
-        this.checkList.add(value);
+        if (checkList.size() != 0) {
+            for (int i = 0; i < checkList.size(); i++) {
+                if (!this.checkList.get(i).equals(value)) {
+                    this.checkList.add(value);
+                }
+            }
+        } else {
+            this.checkList.add(value);
+        }
+
     }
 
     public boolean isValid(Object input) {
