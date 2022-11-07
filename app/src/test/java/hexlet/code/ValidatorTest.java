@@ -102,7 +102,7 @@ class NumberSchemaTest {
     void basicRangeTest() {
         Assertions.assertEquals(true, schema.range(TO_CHECK_REALISATION_FIVE, TO_CHECK_REALISATION_TEN)
                 .isValid(TO_CHECK_REALISATION_FIVE));
-        Assertions.assertEquals(true, schema.isValid("test"));
+        Assertions.assertEquals(true, schema.isValid(TO_CHECK_REALISATION_TEN));
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_FOUR));
         Assertions.assertEquals(false, schema.isValid(TO_CHECK_REALISATION_ELEVEN));
     }
