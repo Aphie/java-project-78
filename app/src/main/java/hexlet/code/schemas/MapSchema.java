@@ -58,12 +58,10 @@ public class MapSchema extends BaseSchema {
     @Override
     public final boolean isValid(Object input) {
         super.isValid(input);
-        for (String check: super.getCheckList()) {
-            if (check.equals("isSizeOf")) {
-                this.toCheckIfSizeOf(this.sizeValue);
-            } else if (check.equals("isShape")) {
-                this.toCheckInnerValues();
-            }
+        if (super.getCheckList().contains("isSizeOf") && super.isSchemaIsValid() == true) {
+            this.toCheckIfSizeOf(this.sizeValue);
+        } else if (super.getCheckList().contains("isShape") && super.isSchemaIsValid() == true) {
+            this.toCheckInnerValues();
         }
         return super.isSchemaIsValid();
     }

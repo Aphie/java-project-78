@@ -34,7 +34,7 @@ public class NumberSchema extends BaseSchema {
     public final NumberSchema toCheckIfPositive() {
         if (super.getDataToCheck() != null) {
             if (super.getDataToCheck() instanceof String) {
-                super.setSchemaIsValid(Integer.parseInt(((String) super.getDataToCheck()).trim())  > 0);
+                super.setSchemaIsValid(true);
             } else {
                 super.setSchemaIsValid((Integer) super.getDataToCheck() > 0);
             }
@@ -52,12 +52,10 @@ public class NumberSchema extends BaseSchema {
     @Override
     public final boolean isValid(Object input) {
         super.isValid(input);
-        for (String check: super.getCheckList()) {
-            if (check.equals("isPositive")) {
-                this.toCheckIfPositive();
-            } else if (check.equals("isRange")) {
-                this.toCheckIfRange(this.valueFrom, this.valueTo);
-            }
+        if (super.getCheckList().contains("isPositive") && super.isSchemaIsValid() == true) {
+            this.toCheckIfPositive();
+        } else if (super.getCheckList().contains("isRange") && super.isSchemaIsValid() == true) {
+            this.toCheckIfRange(this.valueFrom, this.valueTo);
         }
         return super.isSchemaIsValid();
     }

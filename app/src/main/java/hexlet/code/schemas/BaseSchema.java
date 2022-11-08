@@ -16,24 +16,17 @@ public class BaseSchema {
     }
 
     public void setCheckList(String value) {
-        if (checkList.size() != 0) {
-            for (int i = 0; i < checkList.size(); i++) {
-                if (!this.checkList.get(i).equals(value)) {
-                    this.checkList.add(value);
-                }
-            }
-        } else {
-            this.checkList.add(value);
+        if (!checkList.contains(value)) {
+            checkList.add(value);
         }
     }
 
     public boolean isValid(Object input) {
+        this.schemaIsValid = true;
         this.dataToCheck = input;
-        for (String check: this.checkList) {
-            if (check.equals("isRequired")) {
+        if (this.checkList.contains("isRequired") && this.schemaIsValid == true) {
                 this.toCheckIfRequired();
             }
-        }
         return this.schemaIsValid;
     }
 

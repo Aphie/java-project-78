@@ -44,12 +44,10 @@ public class StringSchema extends BaseSchema {
     @Override
     public final boolean isValid(Object input) {
         super.isValid(input);
-        for (String check: super.getCheckList()) {
-            if (check.equals("isContains")) {
-                this.toCheckIfContains(this.symbolsToCompare);
-            } else if (check.equals("isEqualMinLength")) {
-                this.toCheckIfEqualLength(this.lengthToCompare);
-            }
+        if (super.getCheckList().contains("isContains") && super.isSchemaIsValid() == true) {
+            this.toCheckIfContains(this.symbolsToCompare);
+        } else if (super.getCheckList().contains("isEqualMinLength") && super.isSchemaIsValid() == true) {
+            this.toCheckIfEqualLength(this.lengthToCompare);
         }
         return super.isSchemaIsValid();
     }
