@@ -24,9 +24,9 @@ public class BaseSchema {
     public boolean isValid(Object input) {
         this.schemaIsValid = true;
         this.dataToCheck = input;
-        if (this.checkList.contains("isRequired") && this.schemaIsValid == true) {
-                this.toCheckIfRequired();
-            }
+        if (this.checkList.contains("isRequired") && this.schemaIsValid) {
+            this.toCheckIfRequired();
+        }
         return this.schemaIsValid;
     }
 

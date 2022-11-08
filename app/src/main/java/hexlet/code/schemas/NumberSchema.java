@@ -52,9 +52,9 @@ public class NumberSchema extends BaseSchema {
     @Override
     public final boolean isValid(Object input) {
         super.isValid(input);
-        if (super.getCheckList().contains("isPositive") && super.isSchemaIsValid() == true) {
+        if (super.getCheckList().contains("isPositive") && super.isSchemaIsValid()) {
             this.toCheckIfPositive();
-        } else if (super.getCheckList().contains("isRange") && super.isSchemaIsValid() == true) {
+        } else if (super.getCheckList().contains("isRange") && super.isSchemaIsValid()) {
             this.toCheckIfRange(this.valueFrom, this.valueTo);
         }
         return super.isSchemaIsValid();
