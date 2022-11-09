@@ -43,7 +43,7 @@ public class MapSchema extends BaseSchema {
         int itemValidFlag = 0;
         for (Object key: ((Map) super.getDataToCheck()).keySet()) {
             for (String keyToCheck : this.shapeSchema.keySet()) {
-                if (key.equals(keyToCheck) && itemValidFlag == 0) {
+                if (key.equals(keyToCheck)) {
                     BaseSchema baseSchema = this.shapeSchema.get(keyToCheck);
                     if (!baseSchema.isValid(((Map<?, ?>) super.getDataToCheck()).get(key))) {
                         itemValidFlag++;
