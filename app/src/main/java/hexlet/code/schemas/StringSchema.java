@@ -46,7 +46,8 @@ public class StringSchema extends BaseSchema {
         super.isValid(input);
         if (super.getCheckList().contains("isContains") && super.isSchemaIsValid()) {
             this.toCheckIfContains(this.symbolsToCompare);
-        } else if (super.getCheckList().contains("isEqualMinLength") && super.isSchemaIsValid()) {
+        }
+        if (super.getCheckList().contains("isEqualMinLength") && super.isSchemaIsValid()) {
             this.toCheckIfEqualLength(this.lengthToCompare);
         }
         return super.isSchemaIsValid();

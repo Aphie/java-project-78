@@ -54,7 +54,8 @@ public class NumberSchema extends BaseSchema {
         super.isValid(input);
         if (super.getCheckList().contains("isPositive") && super.isSchemaIsValid()) {
             this.toCheckIfPositive();
-        } else if (super.getCheckList().contains("isRange") && super.isSchemaIsValid()) {
+        }
+        if (super.getCheckList().contains("isRange") && super.isSchemaIsValid()) {
             this.toCheckIfRange(this.valueFrom, this.valueTo);
         }
         return super.isSchemaIsValid();
