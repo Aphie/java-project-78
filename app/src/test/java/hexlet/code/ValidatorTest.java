@@ -135,6 +135,9 @@ class MapSchemaTest {
     @Test
     void basicSizeOfTest() {
         data.put("key1", "value1");
+        Assertions.assertEquals(true, schema.sizeof(0).isValid(new HashMap()));
+        Assertions.assertEquals(true, schema.required().isValid(new HashMap()));
+        Assertions.assertEquals(true, schema.sizeof(1).isValid(data));
         Assertions.assertEquals(false, schema.sizeof(2).isValid(data));
         data.put("key2", "value2");
         Assertions.assertEquals(true, schema.isValid(data));
@@ -150,22 +153,21 @@ class MapSchemaTest {
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
         human1.put("age", TO_CHECK_REALISATION_ELEVEN);
+        Assertions.assertEquals(true, schema.isValid(human1));
 
         Map<String, Object> human2 = new HashMap<>();
         human2.put("name", "Maya");
         human2.put("age", null);
+        Assertions.assertEquals(true, schema.isValid(human2));
 
         Map<String, Object> human3 = new HashMap<>();
         human3.put("name", "");
         human3.put("age", null);
+        Assertions.assertEquals(false, schema.isValid(human3));
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
         human4.put("age", TO_CHECK_REALISATION_MINUS_TEN);
-
-        Assertions.assertEquals(true, schema.isValid(human1));
-        Assertions.assertEquals(true, schema.isValid(human2));
-        Assertions.assertEquals(false, schema.isValid(human3));
         Assertions.assertEquals(false, schema.isValid(human4));
     }
 
