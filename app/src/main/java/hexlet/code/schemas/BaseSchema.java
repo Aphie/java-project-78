@@ -19,7 +19,7 @@ public class BaseSchema {
     /** Список проверок.*/
     private List<String> checkList = new ArrayList<>();
 
-    /** Признак валидности системы.*/
+    /** Признак валидности схемы.*/
     private boolean schemaIsValid;
 
     /** Параметр - строка для сравнения.*/
@@ -171,6 +171,9 @@ public class BaseSchema {
                     }
                     case "isShape" -> {
                         this.toCheckInnerValues();
+                        break;
+                    }
+                    default -> {
                         break;
                     }
                 }
