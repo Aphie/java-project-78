@@ -1,8 +1,6 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema {
-    private String symbolsToCompare;
-    private int lengthToCompare;
 
     public StringSchema() {
         super.setSchemaIsValid(true);
@@ -15,13 +13,13 @@ public class StringSchema extends BaseSchema {
 
     public final StringSchema contains(String toCompare) {
         super.setCheckList("isContains");
-        this.symbolsToCompare = toCompare;
+        this.setSymbolsToCompare(toCompare);
         return this;
     }
 
     public final StringSchema minLength(int toCompare) {
         super.setCheckList("isEqualMinLength");
-        this.lengthToCompare = toCompare;
+        this.setLengthToCompare(toCompare);
         return this;
     }
 
@@ -31,26 +29,5 @@ public class StringSchema extends BaseSchema {
         return this;
     }
 
-    public final StringSchema toCheckIfContains(String toCompare) {
-        super.setSchemaIsValid(((String) super.getDataToCheck()).contains(toCompare));
-        return this;
-    }
-
-    public final StringSchema toCheckIfEqualLength(int toCompare) {
-        super.setSchemaIsValid(((String) super.getDataToCheck()).length() >= toCompare);
-        return this;
-    }
-
-    @Override
-    public final boolean isValid(Object input) {
-        super.isValid(input);
-        if (super.getCheckList().contains("isContains") && super.isSchemaIsValid()) {
-            this.toCheckIfContains(this.symbolsToCompare);
-        }
-        if (super.getCheckList().contains("isEqualMinLength") && super.isSchemaIsValid()) {
-            this.toCheckIfEqualLength(this.lengthToCompare);
-        }
-        return super.isSchemaIsValid();
-    }
 
 }
